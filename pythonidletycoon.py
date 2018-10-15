@@ -1,4 +1,6 @@
 #Idle Tycoon Game
+
+# SUjith... 
 class Store():
     Money = 25.00
     Day = 1
