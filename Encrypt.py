@@ -30,11 +30,12 @@ def Encrypt():
     return new_position
 
 
-def Decrypt():
-    for decrypt in new_position:
+def Decrypt(e):
+    decrypted = ''
+    for decrypt in e:
         if decrypt is not None:
             decrypt_position = alphabet.find(decrypt)
-            decrypted_value = (position - int(key)) % 26
+            decrypted_value = (decrypt_position - int(key)) % 26
             decrypted_text = alphabet[decrypted_value]
             decrypted = decrypted + decrypted_text
     return decrypted
@@ -45,8 +46,8 @@ print("-------------------------------------------------")
 print("Entered text is {} ".format(text))
 print("Encrypted message is {} ".format(e))
 
-d = Decrypt()
+d = Decrypt(e)
 print("-------------------------------------------------")
-print("Encryted text is {} ".format(text))
+print("Encryted text is {} ".format(e))
 print("decrypted message is {} ".format(d))
 
