@@ -1,53 +1,47 @@
 # Encrypt and Decrypt
-'''
-class Cipher:
-
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    
-   # def __init__(self):
- '''       
-    
-def Encrypt():
-    global text 
-    global key
-    global new_position
-    global alphabet
-    global decrypted
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    text = input("enter a text that you want to encrypt ")
-    key = input("Enter a key: ")
-    new_position = ''
-    decrypted = ''
-    
-    
-    for name in text:
-        if name is not None:
-            position = alphabet.find(name)
-            encrypted_value = (position + int(key)) % 26
-            encrypted_text = alphabet[encrypted_value]
-            new_position = new_position + encrypted_text
-            print(new_position)           
-    return new_position
 
 
-def Decrypt(e):
-    decrypted = ''
-    for decrypt in e:
-        if decrypt is not None:
-            decrypt_position = alphabet.find(decrypt)
-            decrypted_value = (decrypt_position - int(key)) % 26
-            decrypted_text = alphabet[decrypted_value]
-            decrypted = decrypted + decrypted_text
-    return decrypted
+class Cipher: 
+    
+    def __init__(self):    
+        self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
+        self.new_position = ''
+        self.decrypted = ''
+      
+    
+    def Encrypt(self):      
+        text = input("enter a text that you want to encrypt ")
+        global key
+        key = input("Enter a key: ")
         
-e = Encrypt()
+        for name in text:
+            if name is not None:
+                position = self.alphabet.find(name)
+                encrypted_value = (position + int(key)) % 26
+                encrypted_text = self.alphabet[encrypted_value]
+                self.new_position = self.new_position + encrypted_text
+                print(self.new_position)           
+        return self.new_position
+    
+    
+    def Decrypt(self, e):
+    
+        for decrypt in e:
+            if decrypt is not None:
+                print(decrypt)
+                decrypt_position = self.alphabet.find(decrypt)
+                decrypted_value = (decrypt_position - int(key)) % 26
+                decrypted_text = self.alphabet[decrypted_value]
+                self.decrypted = self.decrypted + decrypted_text
+        return self.decrypted
+        
+result = Cipher()
+
+Encrypted = result.Encrypt()
+print("The encrypted mesaage is {} ".format(Encrypted))
 
 print("-------------------------------------------------")
-print("Entered text is {} ".format(text))
-print("Encrypted message is {} ".format(e))
 
-d = Decrypt(e)
-print("-------------------------------------------------")
-print("Encryted text is {} ".format(e))
-print("decrypted message is {} ".format(d))
+Decrypted = result.Decrypt(Encrypted)
+print("The mesaage when decrypted back is {} ".format(Decrypted))
 
