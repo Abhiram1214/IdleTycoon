@@ -4,11 +4,13 @@
 class Store():
     Money = 25.00
     Day = 1
-    def __init__(self):
-        self.StoreName = "Lemon Stand"
+    StoreList = []
+    
+    def __init__(self, storename, storeprofit, storecost):
+        self.StoreName = storename
         self.StoreCount = 0
-        self.StoreProfit = 1.50
-        self.StoreCost = 3
+        self.StoreProfit = storeprofit
+        self.StoreCost = storecost
 
     @classmethod
     def DisplayGameInfo(cls):
@@ -16,16 +18,20 @@ class Store():
         print("Day #"+str(cls.Day))
         print("Money $" + str(cls.Money))
         print("---------------------------------------------")
-
+        print("Stores".ljust(25) + "Store Cost".ljust(15) + "Store Count")
+        
+        for store in cls.StoreList:
+            store.StoreInfo()            
+        
+        print("---------------------------------------------")
 
     def StoreInfo(self):
-        print("---------------------------------------------")
-        print("Name of our store is " + str(self.StoreName))
-        print("Money = %s" % (Store.Money))
-        print("Store Count: %d" %(self.StoreCount))
-        print("---------------------------------------------")
-
-
+        
+        StoreCostStr = "${}".format(self.StoreCost).rjust(12)
+        print(self.StoreName.ljust(20) + StoreCostStr.ljust(20) + str(self.StoreCount))
+        
+        
+        
 
     def BuyStore(self):
         if self.StoreCost <= Store.Money:
@@ -42,26 +48,28 @@ class Store():
         DailyProfit = self.StoreProfit + self.StoreCount
         Store.Money += DailyProfit
 
-currentstore = Store()
+Store.StoreList.append(Store("Lemonade Stand", 1.50, 3))
+Store.StoreList.append(Store("Record Store", 5, 15))
+Store.StoreList.append(Store("Icecream Store", 10, 9))
 
 
 #main game loop
 while True:
     Store.DisplayGameInfo()
-
+    
     print("Available options are: (N)Next Day, (B)Buy Store, (Q)Quit")
     result = input("please enter your selection: ")
 
     if result == 'B' or result == 'b':
         print("Current status")
-        currentstore.BuyStore()
+        Store.StoreList[0].BuyStore()
     elif result == 'N'or 'n':
-        currentstore.NextDay()
+        Store.StoreList[0].NextDay()
         #DisplayStoreInfo()
     elif result == 'q' or 'Q':
         break
     else:
         print("Wrong input")
-    currentstore.StoreInfo()
+    #currentstore.StoreInfo()
 
 print("----ended---")
