@@ -19,21 +19,22 @@ class Store():
         print("Money $" + str(cls.Money))
         print("---------------------------------------------")
         print("Stores".ljust(25) + "Store Cost".ljust(15) + "Store Count")
-        
+        i =1 
         for store in cls.StoreList:
-            store.StoreInfo()            
-        
+            store.StoreInfo(i)            
+            i+=1
         print("---------------------------------------------")
 
-    def StoreInfo(self):
+    def StoreInfo(self, i):
         
         StoreCostStr = "${}".format(self.StoreCost).rjust(12)
-        print(self.StoreName.ljust(20) + StoreCostStr.ljust(20) + str(self.StoreCount))
+        print(str(i) +")" + self.StoreName.ljust(20) + StoreCostStr.ljust(20) + str(self.StoreCount))
         
         
         
 
     def BuyStore(self):
+        whichstore = input("which store do you want to buy")
         if self.StoreCost <= Store.Money:
             self.StoreCount +=1
             print(self.StoreCount)
