@@ -62,6 +62,23 @@ Store.StoreList.append(Store("Record Store", 5, 0.5))
 Store.StoreList.append(Store("Icecream Store", 10, 9))
 
 root = tk.Tk()
+
+root.title("Idle Python Tycoon Game")
+root.geometry("700x300")
+
+money_label = tk.Label(root, text="Money")
+money_label.grid(row=0, column=0)
+
+moneyamt_label = tk.Label(root, text="${}".format(Store.Money))
+moneyamt_label.grid(row =1, column = 0)
+
+day_label = tk.Label(root, text="Day")
+day_label.grid(row=0, column=1)
+
+dayamt_label = tk.Label(root, text=Store.Day)
+dayamt_label.grid(row =1, column = 1)
+
+
 root.mainloop()
 
 
